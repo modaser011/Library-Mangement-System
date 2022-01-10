@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<style>
+  .col-md-6
+  {
+    background-color: rgb(98, 99, 99);
+  }
+  </style>
+<div class="row">
+  <div class="col-md-6 mx-auto ">
+    <form method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="d-grid gap-2 my-3">
+        <input type="submit" value="add / edit book" class="btn btn-success">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

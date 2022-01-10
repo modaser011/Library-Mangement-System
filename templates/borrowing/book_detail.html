@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .s
+    {
+        background-color: rgba(73, 73, 73, 0.88);
+    }
+    .h
+    {
+        color:cornsilk;
+    }
+    </style>
+<div class="s">
+<h1 class="h">Borrower: {{borrow.user}}</h1>
+<h2 class="h">Book: {{borrow.book}}</h2>
+<p class="h">Expired Date: {{borrow.exp}}</p>
+<a href="{% url 'borrowing:edit_borrow' borrow.id %}" style="background-color: rgb(228, 187, 5); color:black" class="btn ">edit</a>
+<a href="{% url 'borrowing:delete_borrow' borrow.id %}" style="background-color: rgb(211, 14, 8); color:black" class="btn ">return</a>
+</div>
+{% endblock content %}

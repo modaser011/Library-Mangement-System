@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+   .d
+  {
+    background-color: rgb(71, 71, 71);
+  }
+  .go
+  {
+    background-color: rgb(0, 0, 0);
+    width: 90px;
+    border-radius: 8%;
+    color: cornsilk;
+  }
+  </style>
+<form action="" class="d" method="POST">
+  {% csrf_token %}
+  <label style="color :bisque">search</label>
+  <input type="search" name="search">
+  <select name="select" id="se" >
+    <option value="name">name</option>
+    <option value="isbn">isbn</option>
+    <option value="author">author</option>
+    <option value="catagery">catagery</option>
+  </select>
+  <input type="submit" value="Go"  class="go";>
+</form>
+
+
+{% if request.user.is_staff %}
+<div class="d-grid gap-2 my-3">
+  <a class="btn" style="background-color: rgb(4, 99, 4); color:black" href='{% url "lib:add_book" %}'>add book</a>
+</div>
+{% endif %}
+<div class="row">
+  {% for book in object_list %}
+  <div class="col-md-3 m-2">
+    <div style="
+        background-color: rgb(0, 0, 0);
+         color: rgb(255, 255, 255);
+         text-align: center;
+         font-family: 'Courier New', Courier, monospace;
+         border-radius: 10%;
+    "
+     class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" style="color: chocolate;">{{book.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted" style="font-weight: bolder;" style="color: chocolate;">{{book.isbn}}</h6>
+        <p class="card-text" style="color: chocolate;" >author: {{book.author}}</p>
+        <p class="card-text" style="color: chocolate;">category: {{book.category}}</p>
+        <a href="{% url 'lib:book_detail' book.id %}" class="card-link btn btn-outline-primary">More
+          Detail</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

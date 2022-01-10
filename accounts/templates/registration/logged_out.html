@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="row">
+	<div class="col-md-6 mx-auto mt-5 mb-5 text-center">
+		<h1 style="color: chocolate;">Logged out!</h1>
+		<div class="d-grid gap-2 my-3">
+			<a href="{% url 'login'%}" class="btn btn-success">Click here to login again.</a>
+		</div>
+	</div>
+</div>
+{% endblock content %}

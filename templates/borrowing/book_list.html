@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .d
+  {
+    background-color: rgb(71, 71, 71);
+  }
+  .go
+  {
+    background-color: rgb(0, 0, 0);
+    width: 90px;
+    border-radius: 8%;
+    color: cornsilk;
+  }
+  </style>
+<form  class="d" method="POST">
+  {% csrf_token %}
+  <label style="color :bisque">search</label>
+  <input type="search" name="search">
+  <select name="select" id="se" >
+    <option value="name">name</option>
+    <option value="isbn">isbn</option>
+    <option value="author">author</option>
+    <option value="catagery">catagery</option>
+  </select>
+  <input type="submit" value="Go"  class="go";>
+</form>
+{% if not request.user.is_staff %}
+<div class="d-grid gap-2 my-3">
+  <a class="btn " style="background-color: rgb(4, 99, 4); color:black" href='{% url "borrowing:add_borrow" %}'> borrow</a>
+</div>
+{% endif %}
+<div class="row">
+  {% for bor in borrow %}
+  <div class="col-md-3 m-2">
+    <div class="card" style="
+    background-color: rgb(0, 0, 0);
+     color: rgb(255, 255, 255);
+     text-align: center;
+     font-family: 'Courier New', Courier, monospace;
+     border-radius: 10%;
+"style="width: 18rem;" >
+      <div class="card-body">
+        <h5 class="card-title">{{bor.user}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{bor.book}}</h6>
+        <p class="card-text">Expired: {{bor.exp}}</p>
+        <a href="{% url 'borrowing:borrowing_detail' bor.id %}" class="card-link btn btn-outline-primary">More
+          Detail</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

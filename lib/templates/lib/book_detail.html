@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="txt" style="color: chocolate; background-color: rgba(73, 73, 73, 0.9);" >
+<h1 style="color: rgb(240, 240, 240);">Name: {{book.name}}</h1>
+<h2 style="color: rgb(233, 233, 233);">ISBN: {{book.isbn}}</h2>
+<p style="color: rgb(238, 238, 238);"> Author: {{book.author}}</p>
+<p style="color: rgb(247, 247, 247);">Category: {{book.category}}</p>
+</div>
+{% if request.user.is_staff %}
+<a href="{% url 'lib:edit_book' book.id %}" class="btn" style="background-color: rgb(228, 187, 5); color:black">edit</a>
+<a href="{% url 'lib:delete_book' book.id %}" class="btn" style="background-color: rgb(211, 14, 8); color:black">delete</a>
+{% endif %}
+
+{% endblock content %}

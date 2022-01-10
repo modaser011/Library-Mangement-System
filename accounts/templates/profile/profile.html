@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+	.col-md-6
+	{
+		color:rgb(0, 0, 0);
+		background-color: rgb(226, 226, 226,.7);
+	}
+	.btn
+	{
+		margin-left: 20px;
+		border-radius: 5%;
+	}
+	</style>
+<div class="row">
+	<div class="col-md-6 mx-auto mt-5 mb-5 text-center">
+		<h1>
+			Username: {{profile.user.username}}
+		</h1>
+		<h2 >
+			Email Addreess: {{profile.user.email}}
+		</h2>
+		<h3 >
+			Phone Number: {{profile.phone_number}}
+		</h3>
+		<h3 >
+			Address: {{profile.address}}
+		</h3>
+<br><br>
+
+		<a href="{% url 'accounts:profile_edit' %}" class="btn" style="background-color: rgb(253, 190, 31);">Edit Profile</a>
+		<a href="{% url 'password_change' %}" class="btn" style="background-color: rgb(53, 156, 216);">Change Password</a>
+	</div>
+</div>
+
+
+
+{% endblock content %}
